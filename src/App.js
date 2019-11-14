@@ -7,7 +7,7 @@ import './App.css';
 import Sound from 'react-sound';
 import Button from './Button';
 
-const apiToken = 'BQAvxA1A9sN5RXipaXpGScGUIg10AEi29sVqSl67hhGYSykxgxaQllLQo3tL7JD0YPv-sVu3KrMK8ijt7cCRissT_vH1Qla9ZbXq3TfqmNyPZs-OScM-umLSqvbnn2NNUthKv-wRtHR71S_UjxbT1A25eXU-QTm0ZPj3ONluDA';
+const apiToken = 'BQBnEIM4d-s-QNXf9HG5jc2zSj-bp3cOqiUfUC_HE3IzfOrmye5oEra8uTlEOL89RCX7ANaXhyWYgwt2egsUu0AzIdBNBOLtqHi2mIMsbfSCCeCI2d08pDStEbPrtwk_mCsWZ3Ovb4d3QwKPzuqxaifR9ShBVWepB1eP8zqewA';
 
 function componentDidMount(){
   this.setState({ text: "Bonjour" });
@@ -112,8 +112,15 @@ class App extends Component {
       swal('No', 'Sous-titre', 'error');
     }
   }
-
   render() {
+    //const has_preview= (this.state.track.preview_url==null);
+    let song_play;
+
+    if (this.state.track.preview_url){
+      song_play= <Sound url={this.state.track.preview_url} playStatus={Sound.status.PLAYING}/>;
+    } else {
+      song_play= <div></div>;
+    }
     if (this.state.songsLoaded){
       return(
         <div className="App">
@@ -133,7 +140,7 @@ class App extends Component {
           <div>Là je suis quelque part dans mon composant principal et j'ai envie d'afficher le composant en dessous.</div>
           <AlbumCover track={this.state.track}/>
           <div>Et voilà, vous pouvez voir au dessus j'ai affiché le composant</div>
-          <Sound url={this.state.track.preview_url} playStatus={Sound.status.PLAYING}/>
+          {song_play}
         </div>
         <div className="App-buttons">
           <button onClick={() => this.checkAnswer(this.state.track_array[0].id)}>{this.state.track_array[0].name}</button>
