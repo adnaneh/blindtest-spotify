@@ -74,7 +74,7 @@ class App extends Component {
       };
       indices = Array.from(indices);
       //let indices = shuffleArray([0,1,2]);
-      this.setState({text: "text personnalisé",
+      this.setState({text: "Mon compte Spotify:",
               musicData: data.items,
               track: data.items[indices[0]].track,
               track2: data.items[indices[1]].track,
@@ -131,15 +131,11 @@ class App extends Component {
         <div className="App-images">
           <p>{this.state.text}</p>
 
-          <p>Longueur du Tableau</p>
-          <p>{this.state.musicData.length}</p>
+          <p>Longueur du Tableau {this.state.musicData.length}</p>
 
-          <p>Premiere Chanson</p>
-          <p>{this.state.musicData[0].track.name}</p>
+          <p>Premiere Chanson {this.state.musicData[0].track.name}</p>
 
-          <div>Là je suis quelque part dans mon composant principal et j'ai envie d'afficher le composant en dessous.</div>
           <AlbumCover track={this.state.track}/>
-          <div>Et voilà, vous pouvez voir au dessus j'ai affiché le composant</div>
           {song_play}
         </div>
         <div className="App-buttons">
